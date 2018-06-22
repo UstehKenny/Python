@@ -15,20 +15,35 @@ print(cadena.capitalize())
 print(cadena.center(35, "-"))
 print(cadena.count("Curso"))
 
+cadena2 = "Python es un lenguaje interpretado"
+arregloCadena = cadena2.split()  #Separa nuestra cadena
+print(arregloCadena)
+cadena3 = "Python-es-un-lenguaje-interpretado"
+arregloCadena2 = cadena3.split("-")  #Separa nuestra cadena
+print(arregloCadena2)
+arregloPalabras = ["Python","es","lenguaje","de","tipado","dinamico"]
+cadenaFinal = ""
+for x in arregloPalabras:
+	cadenaFinal = cadenaFinal + " " + x
+	
+print(cadenaFinal)
+cadenaFinalMetodo = "".join(arregloPalabras)
+
+
 #Ciclos
 #FOR
 
 listaUsuarios = ["Kenny","Damian","Ricardo","Alberto","Gerardo"]
 #Leer de teclado
-usuario = input("Ingresa el usuario\n")
-listaUsuarios.append(usuario)
-for usuario in listaUsuarios: print(usuario)
+#usuario = input("Ingresa el usuario\n")
+#listaUsuarios.append(usuario)
+#for usuario in listaUsuarios: print(usuario)
 
 #Ciclo while
-contador = 0
-while contador < 10:
-	print("El contador tiene valor de: ", contador)
-	contador+=1 #contador = contador + 1
+#contador = 0
+#while contador < 10:
+#	print("El contador tiene valor de: ", contador)
+#	contador+=1 #contador = contador + 1
 
 
 
