@@ -4,9 +4,9 @@ def Registro():
 		username = input("Nombre de usuario: ")
 		password = input("Contraseña: ")
 		usuarios = {}
-        
-		usuarios[username] = password
-		listaUsuario = []
+        listaUsuario = []
+        usuarios[username] = listaUsuario
+		
 		nombre = input("Ingresa nombre: ")
 		listaUsuario = listaUsuario.append(nombre)
 		appellido = input("Ingresa appellido: ")
@@ -15,11 +15,15 @@ def Registro():
 		listaUsuario = listaUsuario.append(edad)
 		numTarj = input("Ingresa numero de tarjeta: ")
 		listaUsuario = listaUsuario.append(numTarj)
-		paypal = input("Ingresa cuenta de PayPal: ")
-		listaUsuario = listaUsuario.append(paypal)
+		pp = []
+		paypalCorreo = input("Ingresa correo de PayPal: ")
+		pp = pp.append(paypalCorreo)
+		paypalContraseña = input("Ingresa contraseña de PayPal")
+
+		listaUsuario = listaUsuario.append(pp)
 		
 		respuesta = input("¿Deseas hacer otro registro? s/n ")
-    return usuarios
+	return usuarios
 
 
 def Loggin(**dicc):
