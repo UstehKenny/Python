@@ -1,22 +1,21 @@
+dicc = {}
+
 #Menu principal: Pide al usuario seleccionar una opcion y dependiendo de esta, va a llevar a dos funciones
 def Menu():
+    dicc = {}
     print("1) Registrarse")
     print("2) Ingresar")
     print("3) Salir ")
     x = int(input("Que desea hacer?"))
-    dicc = {}
 
     if x == 1:
         print("Registro")
         dicc = Registro()
-        print(dicc)
-    elif x == 2:
-        
+    elif x == 2:       
         print("Login")
         Login(dicc)
     else: 
         print("Hasta luego")
-
 #Funcion de Login
 def Login(dicc):
     #Se pide usuario 
@@ -64,7 +63,16 @@ def Registro():
             Registro()
         else:
             print("Opcion invalida")
+            
         return usuarios
-
+"""
+def generaArchivo(user):
+    archivo = open('registro.txt','w')
+    nombre = dicc[user[1]]
+    apellido = dicc[user[2]]
+    edad = dicc[user[3]]
+    archivo.write("Bienvenido: "+ nombre + apellido)
+    archivo.write("Edad: " + edad)
+    archivo.write("Numero de tarjeta: ") """
 
 Menu()

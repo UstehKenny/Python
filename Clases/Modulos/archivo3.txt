@@ -1,0 +1,6 @@
+Primer texto del archivo...
+Cuando se agrega mas texto: Primera cadena: Este es mi archivo dos
+Segundas cadena: Linea2
+Linea3
+Linea4
+Linea5
