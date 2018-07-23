@@ -30,7 +30,7 @@ else:
 """
 usuarios = {}
 unaLista = []
-        
+"""        
 for loquesea in range(3):
     username = input("Nombre de usuario: ") #Se pide el nombre de usuario
     password = input("Contrasenia: ") #Se pide una contrasenia
@@ -43,7 +43,7 @@ for loquesea in range(3):
        
     edad = input("Ingresa edad: ")
     unaLista.append(edad) #3
-    """       
+           
     numTarj = input("Ingresa numero de tarjeta: ")
     unaLista.append(numTarj) #4
         
@@ -53,7 +53,7 @@ for loquesea in range(3):
     paypalContrasenia = input("Ingresa contrasenia de PayPal")
     pp.append(paypalContrasenia) #5.1
 
-    unaLista.append(pp) #5 """
+    unaLista.append(pp) #5 
     usuarios[username] = unaLista
 
 #articulo = input(" askk")
@@ -62,3 +62,14 @@ for loquesea in range(3):
 for elemento in usuarios:
     print(elemento) #Llave
     print(usuarios[elemento][0]) #Valor de la lista en la posicion 0
+
+"""
+
+numeros = {'n1':[1,200],'n2':[2,3],'n3':[3,4]}
+for lqs in numeros:
+    print(lqs)
+    print(numeros[lqs][1])
+
+numeros['n1'][1] -= 1
+print("Nuevo valor: ")
+print(numeros['n1'][1])
