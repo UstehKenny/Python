@@ -103,11 +103,12 @@ def Registrar():
         nombre = input("Ingresa nombre: ") #1
         apellido = input("Ingresa apellido: ") #2
         edad = input("Ingresa edad: ") #3
-        numTarj = input("Ingresa numero de tarjeta: ") #4
-        pp = [] #5
-        paypalCorreo = input("Ingresa correo de PayPal: ") #5.0
+        correo = input("Ingresa correo: ")#4
+        numTarj = input("Ingresa numero de tarjeta: ") #5
+        pp = [] #6
+        paypalCorreo = input("Ingresa correo de PayPal: ") #6.0
         pp.append(paypalCorreo)
-        paypalContrasenia = getpass.getpass("Ingresa contrasenia de PayPal") #5.1
+        paypalContrasenia = getpass.getpass("Ingresa contrasenia de PayPal") #6.1
         pp.append(paypalContrasenia)
 
         if wahl=='v' or wahl=='V':
@@ -116,8 +117,9 @@ def Registrar():
             listaVendedores.append(nombre) #1
             listaVendedores.append(apellido) #2
             listaVendedores.append(edad) #3
-            listaVendedores.append(numTarj) #4
-            listaVendedores.append(pp) #5
+            listaVendedores.append(correo)#4
+            listaVendedores.append(numTarj) #5
+            listaVendedores.append(pp) #6
             vendedores[bname] = listaVendedores
         elif wahl=='c' or wahl=='C':
             #Compradores
@@ -125,8 +127,9 @@ def Registrar():
             listaCompradores.append(nombre) #1
             listaCompradores.append(apellido) #2
             listaCompradores.append(edad) #3
-            listaCompradores.append(numTarj) #4
-            listaCompradores.append(pp) #5
+            listaCompradores.append(correo) #4
+            listaCompradores.append(numTarj) #5
+            listaCompradores.append(pp) #6
             compradores[bname] = listaCompradores
         elif wahl=='a' or wahl=='A':
             #Vendedores
@@ -134,16 +137,18 @@ def Registrar():
             listaVendedores.append(nombre) #1
             listaVendedores.append(apellido) #2
             listaVendedores.append(edad) #3
-            listaVendedores.append(numTarj) #4
-            listaVendedores.append(pp) #5
+            listaVendedores.append(correo) #4
+            listaVendedores.append(numTarj) #5
+            listaVendedores.append(pp) #6
             vendedores[bname] = listaVendedores
             #Compradores
             listaCompradores.append(passwort) #0
             listaCompradores.append(nombre) #1
             listaCompradores.append(apellido) #2
             listaCompradores.append(edad) #3
-            listaCompradores.append(numTarj) #4
-            listaCompradores.append(pp) #5
+            listaCompradores.append(correo) #4
+            listaCompradores.append(numTarj) #5
+            listaCompradores.append(pp) #6
             compradores[bname] = listaCompradores
         else:
             print("Opcion invalida")
