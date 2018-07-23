@@ -97,7 +97,7 @@ def Registrar():
     if wahl=='v' or wahl=='V' or wahl=='c' or wahl=='C' or wahl=='a' or wahl=='A':
 
         bname = input("Nombre de usuario: ") #Se pide el nombre de usuario. Llave del diccionario
-
+        validarUsuario(bname)
         passwort = getpass.getpass("Contrasenia: ") #0
         validarContrasenia(passwort)
         nombre = input("Ingresa nombre: ") #1
@@ -158,9 +158,9 @@ def Registrar():
 def subirArticulo():
     print("Vendedor\n Subir Articulos:")
     nombreArticulo = input("Nombre del articulo: ")
-    descrip = input("Descripcion del articulo: ")
-    precio = float(input("Precio del articulo: "))
-    numInventario = int(float(input("Disponibles en el inventario: ")))
+    descrip = input("Descripcion del articulo: ") #0
+    precio = float(input("Precio del articulo: "))#1
+    numInventario = int(float(input("Disponibles en el inventario: ")))#2
 
     listaArticulos.append(descrip) #0
     listaArticulos.append(precio) #1
@@ -171,7 +171,28 @@ def subirArticulo():
     print("Operacion aceptada")
 
 def comprarArticulo():
-    print("Articulos: ")
+    print("Ropa disponible en la tienda: ")
+    for prenda in articulos:
+        print("* *"+prenda+"* *") #Llaves
+        print("Descripcion\n"+articulos[prenda][0])
+        print("Precio:\n"+articulos[prenda][1])
+        print("En inventario: "+articulos[prenda][2])
+
+    antwort=input("Desea comprar algo de nuestro catalogo? s/n ")
+    if antwort=='s' or antwort=='S':
+        nombre_Articulo = input("Nombre del articulo (tal cual se muestra en el catalogo): ")
+        print("Descripcion\n"+articulos[nombre_Articulo][0])
+        print("Precio:\n"+articulos[nombre_Articulo][1])
+        print("En inventario: "+articulos[nombre_Articulo][2])
+        conf = input("Confirmar compra s/n: ")
+        if conf=='s' or antwort=='S':
+            articulos[nombre_Articulo][2] -= 1
+    elif antwort=='n' or antwort=='N':
+        print("Regresar: ")
+    else:
+        print("Opcion invalida ")
+
+
         
 
 
