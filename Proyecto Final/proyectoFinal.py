@@ -1,9 +1,7 @@
+# -*- coding: UTF-8 -*-
 import getpass
 
-# -*- coding: UTF-8 -*-
-
 #Modulos que nos van a permitir enviar correos
-
 import smtplib, getpass, os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -21,16 +19,44 @@ listaVendedores = []
 articulos = {}
 listaArticulos = []
 
-def enviarCorreo():
+
+def menuInicio():
+    print("Bienvenido: ")
+    print("1) Registrarse")
+    print("2) Ingresar")
+    print("3) Salir ")
+    x = int(input("Que desea hacer?"))
+
+    if x == 1:
+        print("Registrarse")
+        Registrar()
+    elif x == 2:       
+        print("Ingresar")
+        Ingresar()
+    else: 
+        print("Hasta luego")  
+
+def menuVendedor():
+    print("**Tienda de ropa**")
+    x = input("Subir articulo? s/n \n m-> salir")
+    if x=='s' or x=='S':
+        subirArticulo()
+    elif x=='n' or x=='N':
+        menuVendedor()
+    elif x=='m' or x=='M':
+        menuInicio()
+
+
+def enviarCorreo(nombre_Articulo):
     #Autenticacion
-    user = input("Cuenta gmail: ")
-    password = getpass.getpass("Contraseña: ")
+    user = ("lolusuariouno@gmail.com")
+    password = ("notengoContrasenia12")
     #Datos del correo
     remitente = user
-    destinatario = input("Para, ejemplo <correoGmail>")
-    asunto = input("Asunto: ")
-    mensaje = input("Mensaje: ")
-    archivo = input("Adjuntar archivo: ")
+    destinatario = input("Ingrese su correo para confirmar su compra: ")
+    asunto = ("Compra en linea de ropa")
+    mensaje = ("Articulo comprado: "+nombre_Articulo+"\nDescripcion: "+articulos[nombre_Articulo][0]+"\nPrecio: "articulos[nombre_Articulo][1])
+    #archivo = input("Adjuntar archivo: ")
     #Protocolo y puerto
     gmail = smtplib.SMTP("smtp.gmail.com",587)
     #Certificado de seguridad
@@ -60,7 +86,6 @@ def enviarCorreo():
     gmail.quit()
 
 
-
 def validarContrasenia(passw):
     if len(passw) >= 8:
         print("Es mayor a 8")
@@ -75,39 +100,51 @@ def validarContrasenia(passw):
                         if passw.isspace() == False:
                             return True
                         else:
-                            return False
+                            print("Intente de nuevo")
+                            Registrar()
                     else:
-                        print("No tiene caracteres")
+                        print("No tiene caracteres.Intente de nuevo")
+                        Registrar()
                 else:
-                    print("No tiene numero")
+                    print("No tiene numero.Intente de nuevo")
+                    Registrar()
             else:
-                print("No tiene minusculas")
+                print("No tiene minusculas.Intente de nuevo")
+                Registrar()
         else:
-            print("No tiene mayusculas")
+            print("No tiene mayusculas.Intente de nuevo")
+            Registrar()
     else:
-        print("Menor a 8")
+        print("Menor a 8.Intente de nuevo")
+        Registrar()
+
 
 def validarUsuario(bname):
     if len(bname) >= 8:
-        print("Es mayor a 8")
+        #print("Es mayor a 8")
         if bname.isupper() == False:
-            print("Tiene mayusculas")
+            #print("Tiene mayusculas")
             if bname.islower() == False:
-                print("Tiene minusculas")
+                #print("Tiene minusculas")
                 if bname.isdigit() == False:
-                    print("Tiene numero")
+                    #print("Tiene numero")
                     if bname.isspace() == False:
                         return True
                     else:
-                        return False
+                        print("Intente de nuevo")
+                        Registrar()
                 else:
-                    print("Contrasenia invalida")
+                    print("Contrasenia invalida.Intente de nuevo")
+                    Registrar()
             else:
-                print("Contrasenia invalida")
+                print("Contrasenia invalida.Intente de nuevo")
+                Registrar()
         else:
-            print("Contrasenia invalida")
+            print("Contrasenia invalida.Intente de nuevo")
+            Registrar()
     else:
-        print("Usuario menor a 6 caracteres")
+        print("Usuario menor a 6 caracteres.Intente de nuevo")
+        Registrar()
 
 #Ambos usuarios tendran la opcion de registrarse e ingresar
 def Ingresar():
@@ -123,6 +160,8 @@ def Ingresar():
             if user in vendedores:
                 if vendedores[user][0] == passw:
                     print("Bienvenido..."+user)
+                    menuVendedor()
+
                 else:
                     print("Contrasenia incorrecta ")
             else:
@@ -131,6 +170,8 @@ def Ingresar():
             if user in compradores:
                 if compradores[user][0] == passw:
                     print("Bienvenido..."+user)
+                    comprarArticulo(user)
+
                 else:
                     print("Contrasenia incorrecta ")
             else:
@@ -139,6 +180,7 @@ def Ingresar():
             print("Opcion invalida")
     else:
         print("Opcion invalida")
+
 
 def Registrar():
     print("Registro")
@@ -149,8 +191,10 @@ def Registrar():
 
         bname = input("Nombre de usuario: ") #Se pide el nombre de usuario. Llave del diccionario
         validarUsuario(bname)
+
         passwort = getpass.getpass("Contrasenia: ") #0
         validarContrasenia(passwort)
+
         nombre = input("Ingresa nombre: ") #1
         apellido = input("Ingresa apellido: ") #2
         edad = input("Ingresa edad: ") #3
@@ -206,6 +250,7 @@ def Registrar():
     else:
         print("Opcion invalida")
 
+
 def subirArticulo():
     print("Vendedor\n Subir Articulos:")
     nombreArticulo = input("Nombre del articulo: ")
@@ -220,8 +265,10 @@ def subirArticulo():
     articulos[nombreArticulo] = listaArticulos
 
     print("Operacion aceptada")
+    menuVendedor()
 
-def comprarArticulo():
+
+def comprarArticulo(user):
     print("Ropa disponible en la tienda: ")
     for prenda in articulos:
         print("* *"+prenda+"* *") #Llaves
@@ -235,22 +282,30 @@ def comprarArticulo():
         print("Descripcion\n"+articulos[nombre_Articulo][0])
         print("Precio:\n"+articulos[nombre_Articulo][1])
         print("En inventario: "+articulos[nombre_Articulo][2])
-        conf = input("Confirmar compra s/n: ")
-        if conf=='s' or antwort=='S':
-            articulos[nombre_Articulo][2] -= 1
+        s = input("Ingrese correo de PayPal para proceder con la compra: ")
+        if compradores[user][6][0] == s: 
+            conf = input("Confirmar compra s/n: ")
+            if conf=='s' or antwort=='S':
+                enviarCorreo(nombre_Articulo)
+                articulos[nombre_Articulo][2] -= 1
+            elif conf=='n' or conf=='N':
+                print("Lamentamos oir eso! \nVuelva pronto...")
+                comprarArticulo(user)
+            else:
+                print("Opcion invalida")
+                comprarArticulo(user)
+        else:
+            print("Correo incorrecto. Intente de nuevo... ")
+            comprarArticulo(user)
     elif antwort=='n' or antwort=='N':
-        print("Regresar: ")
+        print("Hasta luego ")
+        menuInicio()
     else:
         print("Opcion invalida ")
+        comprarArticulo(user)
 
 
-        
+menuInicio()        
 
 
 
-
-    """
-  
-
-
-    """
